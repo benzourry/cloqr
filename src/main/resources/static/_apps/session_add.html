@@ -1,0 +1,71 @@
+
+
+<div ng-controller="SessionAdd">
+
+    <p class="alert" ng-if="alertMessage">{{alertMessage}}</p>
+
+    <form class="pure-form pure-form-aligned" onsubmit="return null">
+        <fieldset>
+            <legend><h1>Add/Update Session</h1></legend>
+            <div class="pure-control-group">
+                <label for="name">Name</label>
+                <textarea id="name" ng-model="data.name" class="pure-input-1-2" required></textarea>
+            </div>
+            <div class="pure-control-group">
+                <label for="eventType">Session Type</label>
+                <select id="eventType" class="pure-input-1-2" ng-model="data.eventType">
+                    <option>Event</option>
+                    <option>Workshop</option>
+                    <option>Lecture</option>
+                </select>
+            </div>
+            <div class="pure-control-group">
+                <label for="startTime">Start Time</label>
+                <input type="datetime" id="startTime" class="pure-input-1-2" ng-model="data.startTime">
+            </div>
+            <div class="pure-control-group">
+                <label for="endTime">Finish Time</label>
+                <input type="datetime" id="endTime" class="pure-input-1-2" ng-model="data.endTime">
+            </div>
+
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox" name="requireCheckout" ng-model="data.requireCheckout"> Require
+                    Checkout
+                </label>
+
+                <button type="button" class="pure-button pure-button-primary" ng-click="submitForm()"><i class="fa fa-send"></i> Submit</button>
+            </div>
+        </fieldset>
+    </form>
+
+
+
+</div>
+
+<script>
+    Attend.registerCtrl("SessionAdd", SessionAdd);
+    SessionAdd.$inject = ["$http", "$scope","$routeParams"];
+    function SessionAdd($http, $scope, $routeParams) {
+
+        if ($routeParams.id) {
+            $http.get("api/event/" + $routeParams.id + "").success(
+                function (res) {
+                    $scope.data = res;
+                }
+            );
+        }
+
+        $scope.submitForm = function () {
+            $http.post("api/event/create", $scope.data).success(
+                function (data) {
+                    $scope.alertMessage="Event successfully saved";
+                }
+            );
+        }
+
+    }
+</script>
+
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+<html class="ltie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+<head>
+    <title th:fragment="title">cloQR : Login Required</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, account-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="_assets/ico/favicon.ico"/>
+
+    <style>
+        @import url(_assets/fonts/font.css);
+        body {
+            background: #666;
+        }
+
+        .login-form * {
+            font-family: 'Open Sans',sans-serif;
+            /*font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;*/
+        }
+
+        .login-prompt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, .9);
+        }
+
+        .main {
+            width: 400px;
+            /*height: 350px;*/
+            margin: 0px auto;
+            background: #fff;
+            margin-top: 10%;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .login-header {
+            background: linear-gradient( rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.4) ), url('_assets/img/profile-bg.png') no-repeat;
+
+            /*url('_assets/images/profile-bg.png') top left no-repeat;*/
+            background-size: cover;
+            padding: 20px;
+            font-family: 'Open Sans',sans-serif;
+            /*font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;*/
+            font-size: 24px;
+            font-weight: 100;
+            color: #000;
+        }
+
+        .login-header:after{
+            content: '';
+            position: relative;
+            display: block;
+            height: 4px;
+            width: 40%;
+            background: #17a;
+            bottom: -20px;
+        }
+
+        .login-form{
+            padding: 20px 40px;
+            text-align: left;
+        }
+
+        .login-form input {
+            border: solid 1px #aaa;
+            padding: 10px;
+            margin: 4px;
+            background: #fff;
+            width: 90%;
+            font-size: 13px;
+        }
+
+        .login-form .login-error {
+            color: red;
+        }
+
+        .login-form button {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .ltie9 .login {
+            display: none;
+        }
+
+        .incompatible {
+            display: none;
+            text-align: left;
+            font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .incompatible h2 {
+            font-weight: 100;
+        }
+
+        .ltie9 .incompatible {
+            display: block;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-account-select: none;
+            -moz-account-select: none;
+            -ms-account-select: none;
+            account-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        label {
+            display: block;
+            padding-left: 15px;
+            text-indent: -15px;
+        }
+        input[type=checkbox] {
+            width: 13px;
+            height: 13px;
+            padding: 0;
+            margin:0;
+            vertical-align: bottom;
+            position: relative;
+            top: -1px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="main" align="center">
+    <div class="incompatible">
+        <h2>Dear respected account,</h2>
+
+        <p>For an improved account experience, cloQR will only support modern browser. Please update your browser to the
+            latest version available.</p>
+        <ul>
+            <li>Google Chrome</li>
+            <li>Mozilla Firefox</li>
+            <li>Internet Explorer 10/11</li>
+        </ul>
+    </div>
+
+    <div class="login">
+        <div class="login-header"><strong>cloQR</strong> Login</div>
+        <div class="login-form">
+            <form th:object="${account}" th:action="@{/signup}" method="post">
+                <p>Please fill in the field</p>
+                <!--<div th:if="${param.error}" class="login-error">-->
+                    <!--Invalid username and password.-->
+                <!--</div>-->
+                <!--<div th:if="${param.logout}" class="login-error">-->
+                    <!--You have been logged out.-->
+                <!--</div>-->
+
+                <input ng-model="fullname" type="text" name="fullname" placeholder="Fullname">
+                <input ng-model="username" type="text" name="username" placeholder="Username">
+                <input ng-model="password" type="password" name="password" placeholder="Password">
+                <input type="hidden" name="enabled" value="1">
+                <!--<div>-->
+                    <!--<div class="checkbox">-->
+                        <!--<label>-->
+                            <!--<input type="checkbox" name="remember-me" /> Remember Me-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+
+//    /**
+//     * Prepares the login form for submission by appending any URI
+//     * fragment (hash) to the form action in order to propagate it
+//     * through the re-direct (i.e. store it client side).
+//     * @param form The login form object.
+//     * @returns true to allow the form to be submitted.
+//     */
+//    function prepareSubmit(form) {
+//        // Extract the fragment from the browser's current location.
+//        var hash = decodeURIComponent(self.document.location.hash);
+//
+//        // The fragment value may not contain a leading # symbol
+//        if (hash && hash.indexOf("#") === -1) {
+//            hash = "#" + hash;
+//        }
+//
+//        // Append the fragment to the current action so that it persists to the redirected URL.
+//        form.action = form.action + hash;
+//        return true;
+//    }
+
+</script>
+</body>
+</html>

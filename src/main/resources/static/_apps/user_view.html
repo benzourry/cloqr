@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="_assets/css/pure-tab.css">
+<div ng-controller="UserView">
+    <h1>{{data.fullname}}'s Info ({{data.username}})</h1>
+
+    <!--<p>Username : {{data.username}}</p>-->
+
+
+    <ul class="tabs">
+        <li>
+            <input type="radio" checked name="tabs" id="tab1">
+            <label for="tab1">Attended Activities</label>
+            <div id="tab-content1" class="tab-content">
+                <table class="pure-table pure-table-horizontal fluid">
+                    <thead>
+                    <tr>
+                        <!--<th>Id</th>-->
+                        <th>Session</th>
+                        <th width="10%">Check In</th>
+                        <th width="10%">Check Out</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="log in logList | orderBy:'checkInTime':true">
+                        <!--<td>{{log.id}}</td>-->
+                        <td><a href="#!/session/{{log.event.id}}">{{log.event.name}}</a></td>
+                        <td>{{log.checkInTime| date:'HH:mm:ss'}}</td>
+                        <td>{{log.checkOutTime|date:'HH:mm:ss'}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- Your content goes here -->
+            </div>
+        </li>
+        <li>
+            <input type="radio" name="tabs" id="tab2">
+            <label for="tab2">My Activities</label>
+            <div id="tab-content2" class="tab-content">
+                <table class="pure-table pure-table-horizontal fluid pure-table-striped">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <!--<th width="10%">Check In</th>-->
+                        <!--<th width="10%">Check Out</th>-->
+                        <th width="30%">Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="session in sessionList">
+                        <td><a ng-href="#!/session/{{session.id}}">{{session.name}}</a></td>
+                        <!--<td><a class="pure-button button-xsmall" ng-href="api/event/{{session.id}}/checkin/key" target="_blank">Check In</a></td>-->
+                        <!--<td><a class="pure-button button-xsmall" ng-href="api/event/{{session.id}}/checkout/key" target="_blank">Check Out</a></td>-->
+                        <td><a class="pure-button button-xsmall" ng-click="deleteSession(session.id)" href>Delete</a><a class="pure-button button-xsmall" ng-href="#!/session/edit/{{session.id}}">Edit</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </li>
+    </ul>
+
+
+</div>
+<script>
+    Attend.registerCtrl("UserView", UserView);
+    UserView.$inject = ["$scope", "$http", "$routeParams"];
+    function UserView($scope, $http, $routeParams) {
+
+        var username;
+
+        if($routeParams.username){
+            username = $routeParams.username;
+        }else{
+            username = activeProfile.account.username;
+        }
+
+        $http.get("api/account/" + username + "").success(
+                function (res) {
+                    $scope.data = res;
+                }
+        );
+        $http.get("api/account/" + username + "/logs").success(
+                function (res) {
+                    $scope.logList = res;
+                }
+        );
+        $http.get("api/event/list").success(
+                function (res) {
+                    $scope.sessionList = res;
+                }
+        );
+    }
+</script>

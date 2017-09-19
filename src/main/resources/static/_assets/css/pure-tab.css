@@ -1,0 +1,66 @@
+.tabs input[type=radio] {
+    display:none;
+}
+
+.tabs {
+    width: 100%;
+    float: none;
+    list-style: none;
+    position: relative;
+    padding: 0;
+    /*margin: 75px auto;*/
+    /*border: 1px solid rgb(221, 221, 221);*/
+}
+
+.tabs li{
+    float: left;
+}
+
+.tabs label {
+    display: block;
+    padding: 6px 12px;
+    font-weight: normal;
+    cursor: pointer;
+    position: relative;
+    border-bottom: solid 4px rgba(0,0,0,0);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+
+}
+
+.tabs label:after{
+    content: '';
+    position: absolute;
+    right: 0px;
+    width: 1px;
+    height: 30%;
+    top: 35%;
+    background: rgb(204, 204, 204);
+}
+
+.tabs label:hover {
+    border-bottom: solid 4px #08c;
+    transition: all .4s ease-in;
+}
+
+.tab-content {
+    z-index: 2;
+    display: none;
+    left: 0;
+    width: 100%;
+    /*padding: 10px;*/
+    position: absolute;
+    box-sizing: border-box;
+    border-top:1px solid #08c;
+}
+
+[id^=tab]:checked + label {
+    border-bottom: solid 4px #08c;
+    /*transition: all .5s ease-in;*/
+    top: 0;
+}
+
+[id^=tab]:checked ~ [id^=tab-content] {
+    display: block;
+}
