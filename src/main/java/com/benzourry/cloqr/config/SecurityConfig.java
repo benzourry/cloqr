@@ -97,6 +97,8 @@ public class SecurityConfig {
                     .antMatchers("/api/public/**").permitAll()
                     .antMatchers("/api/v1/lookup/**/list").permitAll()
                     .antMatchers("/api/v1/**").permitAll()
+                    .antMatchers("/signup").permitAll()
+                    .antMatchers("/login").permitAll()
                     // .antMatchers("/","/login").permitAll()
                     .anyRequest().authenticated()
 

@@ -14,6 +14,8 @@ import com.google.zxing.common.BitMatrix;
 //import com.itextpdf.text.pdf.BarcodeQRCode;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,8 +45,8 @@ public class EventService {
         return eventRepository.findOne(id);
     }
 
-    public List<Event> findByUsername(String username) {
-        return eventRepository.findByOrganizeBy(username);
+    public Page<Event> findByUsername(String username,Pageable pageable) {
+        return eventRepository.findByOrganizeBy(username, pageable);
     }
 
 //    public LogEntry checkIn(String code, String username) {
@@ -205,11 +207,19 @@ public class EventService {
 
     }
 
-    public List<LogEntry> getLogEntryList(Long id){
+    public Page<LogEntry> getLogEntryListByUsername(String username, Pageable pageable){
 //        List<LogEntry> test = logEntryRepository.findByEventId(id);
 //        for (LogEntry l: test){
 //            System.out.println("log id:"+l.getId());
 //        }
-        return logEntryRepository.findByEventId(id);
+        return logEntryRepository.findByUsername(username, pageable);
+    }
+
+    public Page<LogEntry> getLogEntryListByEventId(Long eventId, Pageable pageable){
+//        List<LogEntry> test = logEntryRepository.findByEventId(id);
+//        for (LogEntry l: test){
+//            System.out.println("log id:"+l.getId());
+//        }
+        return logEntryRepository.findByEventId(eventId, pageable);
     }
 }

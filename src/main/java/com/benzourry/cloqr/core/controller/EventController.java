@@ -6,6 +6,8 @@ import com.benzourry.cloqr.core.service.EventService;
 //import com.itextpdf.text.BadElementException;
 //import com.itextpdf.text.pdf.BarcodeQRCode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +34,8 @@ public class EventController {
     //    @Autowired
 //    private LogEntryRepository logEntryRepository;
     @RequestMapping(value = "{id}/logs", method = RequestMethod.GET)
-    public List<LogEntry> getLogEntryList(@PathVariable("id") Long id) {
-        List<LogEntry> test = eventService.getLogEntryList(id);
+    public Page<LogEntry> getLogEntryList(@PathVariable("id") Long id, Pageable pageable) {
+        Page<LogEntry> test = eventService.getLogEntryListByEventId(id, pageable);
 //        Map<String, Object> data = new HashMap<>();
 //        data.put("test",test);
 //        for (LogEntry l : test) {
@@ -51,14 +53,14 @@ public class EventController {
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<Event> getList(Principal principal) {
-        System.out.println("principal:"+principal.getName());
-        return eventService.findByUsername(principal.getName());
+    public Page<Event> getList(Principal principal, Pageable pageable) {
+//        System.out.println("principal:"+principal.getName());
+        return eventService.findByUsername(principal.getName(), pageable);
     }
 
     @RequestMapping(value = "list/logs", method = RequestMethod.GET)
-    public List<LogEntry> getListAttendance(Principal principal) {
-        return eventService.getLogEntryList(1L);
+    public Page<LogEntry> getListAttendance(Principal principal, Pageable pageable) {
+        return eventService.getLogEntryListByUsername(principal.getName(), pageable);
     }
 
 //    @RequestMapping(value = "checkin")

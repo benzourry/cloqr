@@ -5,6 +5,8 @@ import com.benzourry.cloqr.core.dao.LogEntryRepository;
 import com.benzourry.cloqr.core.model.Account;
 import com.benzourry.cloqr.core.model.LogEntry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,8 +34,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "{username}/logs", method = RequestMethod.GET)
-    public List<LogEntry> getUserLogs(Principal principal, @PathVariable("username") String username) {
-        return logEntryRepository.findByUsername(username);
+    public Page<LogEntry> getUserLogs(Principal principal, @PathVariable("username") String username,
+                                      Pageable pageable) {
+        return logEntryRepository.findByUsername(username, pageable);
     }
 
 
