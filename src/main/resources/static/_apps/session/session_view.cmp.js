@@ -15,12 +15,12 @@ function SessionView($http, $routeParams) {
     vm.$onInit = function(){
         $http.get("api/event/"+$routeParams.id+"").then(
             function (res) {
-                vm.data = res;
+                vm.data = res.data;
             }
         );
         $http.get("api/event/"+$routeParams.id+"/logs").then(
             function (res) {
-                vm.logList = res.content;
+                vm.logList = res.data.content;
             }
         );
     }

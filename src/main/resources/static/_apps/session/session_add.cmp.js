@@ -24,13 +24,13 @@ function SessionAdd($http, $routeParams) {
         $http.get("api/event/" + id + "")
             .then(
             function (res) {
-                $scope.data = res;
+                $scope.data = res.data;
             }
         );
     }
 
     function saveEvent(){
-        $http.post("api/event/create", vm.data).success(
+        $http.post("api/event/create", vm.data).then(
             function (data) {
                 vm.alertMessage="Event successfully saved";
             }

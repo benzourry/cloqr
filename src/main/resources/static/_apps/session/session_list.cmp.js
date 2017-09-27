@@ -16,10 +16,14 @@ function SessionList($http, $routeParams) {
     vm.getEventList = getEventList;
     vm.deleteSession = deleteSession;
 
+    vm.$onInit = function(){
+        getEventList();
+    }
+
     function getEventList(){
         $http.get("api/event/list").then(
             function (res) {
-                vm.sessionList = res.content;
+                vm.sessionList = res.data.content;
             }
         );
     }
@@ -32,7 +36,7 @@ function SessionList($http, $routeParams) {
                         vm.alertMessage = "Session successfully removed";
                         $http.get("api/event/list").success(
                             function (res) {
-                                vm.sessionList = res.content;
+                                vm.sessionList = res.data.content;
                             }
                         );
                     }
