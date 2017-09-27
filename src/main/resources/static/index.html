@@ -1,0 +1,73 @@
+<!DOCTYPE html >
+<html ng-app="app">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>CLOQR</title>
+    <base href="/" />
+    <!--<base th:href="|${@environment.getProperty('server.context-path')}/|" />-->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="_assets/images/favicon.png"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="_vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="_vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="_assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="_assets/css/wizard.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="_assets/css/ripple.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="_vendor/ui-select/dist/select.min.css" rel="stylesheet" type="text/css" >-->
+
+    <!--HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+    <!--<style>-->
+        <!--body { padding-top: 70px; }-->
+    <!--</style>-->
+
+
+</head>
+<body>
+<script src="_apps/_shared/oauth-config.js" type="application/javascript"></script>
+<script>
+    //    redirect user to the oauth2 authorization page (authorize if logged in, else, redirect to log in page)
+    if (!window.localStorage.getItem("identity")){
+        window.location.href = OAUTH.AUTH_URI+"?client_id=" + OAUTH.CLIENT_ID + "&response_type=token&redirect_uri="+OAUTH.CALLBACK;
+    }
+
+</script>
+
+
+<app-root></app-root>
+
+
+<!--<script src="_vendor/jquery/dist/jquery.min.js"></script>-->
+<script src="_vendor/angular/angular.min.js"></script>
+
+
+<script src="_vendor/angular-route/angular-route.min.js"></script>
+<script src="_vendor/angular-animate/angular-animate.min.js"></script>
+<script src="_vendor/angular-messages/angular-messages.min.js"></script>
+<script src="_vendor/oclazyload/dist/ocLazyLoad.min.js"></script>
+<!--<script src="assets/js/app.js"></script>-->
+<!--<script src="auth.routes.js"></script>-->
+<!--<script src="vendor/bootstrap/js/dropdown.js"></script>-->
+<!--<script src="vendor/bootstrap/js/modal.js"></script>-->
+<!--<script src="_vendor/bootstrap/js/collapse.js"></script>-->
+<script src="_vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script src="_apps/app.module.js"></script>
+<script src="_apps/app.component.js"></script>
+<script src="_apps/app.routes.js"></script>
+<!--<script src="_apps/_shared/oauth-config.js"></script>-->
+<script src="_apps/_shared/user-service.js"></script>
+</body>
+</html>

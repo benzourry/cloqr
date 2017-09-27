@@ -1,0 +1,15 @@
+/* SIDEBAR BACKGROUND COLOR */
+.sidebar,.navbar-header {
+    background-color: #111;
+}
+/* SIDEBAR FONT COLOR */
+.sidebar a{
+     color:#fff; 
+}
+
+.sidebar ul li{
+    transition: all 400ms ease-out;
+}
+.sidebar ul li.open{
+    background : #000;
+}

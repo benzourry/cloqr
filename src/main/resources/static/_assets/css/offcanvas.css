@@ -1,0 +1,79 @@
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+      /*transform-style: flat;*/
+  }
+  /* Add shadow when in mobile view*/
+  .page-title{
+      /*box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);*/
+  }
+
+  /* Modal Z-INDEX not working in using translateX */
+  .content-offcanvas {
+     -webkit-transition: all 400ms ease-out;
+        -moz-transition: all 400ms ease-out;
+         -ms-transition: all 400ms ease-out;
+             transition: all 400ms ease-out;
+       /*      left:0px;
+      -webkit-transform:translateX(0px);
+         -moz-transform: translateX(0px);
+          -ms-transform: translateX(0px);
+              transform:translateX(0px);
+              transform: translateZ(0px);*/
+  }
+
+    .active .content-offcanvas{
+      /*left: 250px;*/
+       -webkit-transform:translateX(280px);
+        -moz-transform: translateX(280px);
+        -ms-transform: translateX(280px);
+         transform:translateX(280px);
+  }
+  
+  .sidebar-offcanvas {
+    -webkit-transition: all 400ms ease-out;
+       -moz-transition: all 400ms ease-out;
+        -ms-transition: all 400ms ease-out;
+            transition: all 400ms ease-out;
+       -webkit-transform:translateX(-280px);
+        -moz-transform: translateX(-280px);
+        -ms-transform: translateX(-280px);
+         transform:translateX(-280px);
+         z-index:12;
+  }
+
+    .active .sidebar-offcanvas{
+       -webkit-transform:translateX(0px);
+        -moz-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+         transform:translateX(0px);
+            width: 280px;
+            z-index:12;
+  }
+  
+    .offcanvas-overlay{
+        /*transform: translate3d(0px, 0px, 0px) !important;*/
+        background: #000;
+        opacity: 0;
+        -webkit-transition: opacity 400ms linear;
+           -moz-transition: opacity 400ms linear;
+                transition: opacity 400ms linear;
+    }
+    .active .offcanvas-overlay{
+        position:fixed;
+        left:0px;
+        top:0px;
+        width:100%;
+        height:100%;
+        z-index:11;
+        opacity: 0.5;
+    }
+}

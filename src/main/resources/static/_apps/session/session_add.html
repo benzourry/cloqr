@@ -1,0 +1,46 @@
+
+
+<div>
+
+    <p class="alert" ng-if="$ctrl.alertMessage">{{$ctrl.alertMessage}}</p>
+
+    <form class="pure-form pure-form-aligned" onsubmit="return null">
+        <fieldset>
+            <legend><h1>Add/Update Session</h1></legend>
+            <div class="pure-control-group">
+                <label for="name">Name</label>
+                <textarea id="name" ng-model="$ctrl.data.name" class="pure-input-1-2" required></textarea>
+            </div>
+            <div class="pure-control-group">
+                <label for="eventType">Session Type</label>
+                <select id="eventType" class="pure-input-1-2" ng-model="$ctrl.data.eventType">
+                    <option>Event</option>
+                    <option>Workshop</option>
+                    <option>Lecture</option>
+                </select>
+            </div>
+            <div class="pure-control-group">
+                <label for="startTime">Start Time</label>
+                <input type="datetime" id="startTime" class="pure-input-1-2" ng-model="$ctrl.data.startTime">
+            </div>
+            <div class="pure-control-group">
+                <label for="endTime">Finish Time</label>
+                <input type="datetime" id="endTime" class="pure-input-1-2" ng-model="$ctrl.data.endTime">
+            </div>
+
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox" name="requireCheckout" ng-model="$ctrl.data.requireCheckout"> Require
+                    Checkout
+                </label>
+
+                <button type="button" class="pure-button pure-button-primary" ng-click="$ctrl.saveEvent()"><i class="fa fa-send"></i> Submit</button>
+            </div>
+        </fieldset>
+    </form>
+
+
+
+</div>
+<!--</body>-->
+<!--</html>-->

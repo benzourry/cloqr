@@ -1,0 +1,28 @@
+<html>
+<head>
+    <script src="oauth-config.js" type="application/javascript"></script>
+    <script>
+//        var FINAL_URI = "http://localhost:8080/home.html";
+
+        var callbackResponse = (document.URL).split("#")[1];
+        var responseParameters = (callbackResponse).split("&");
+        var parameterMap = [];
+        for(var i = 0; i < responseParameters.length; i++) {
+            parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+        }
+        if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+            var identity = {
+                oauth: {
+                    access_token: parameterMap.access_token,
+                    expires_in: parameterMap.expires_in
+                }
+            };
+            window.localStorage.setItem("identity", JSON.stringify(identity));
+            window.location.href = OAUTH.FINAL_URI;
+        } else {
+            alert("Problem authenticating");
+        }
+    </script>
+</head>
+<body>Redirecting...</body>
+</html>

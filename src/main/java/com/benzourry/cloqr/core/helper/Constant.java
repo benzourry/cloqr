@@ -17,7 +17,11 @@ public final class Constant {
 
     public static final String CHECK_IN_PREFIX = "ATDCI-";
     public static final String CHECK_OUT_PREFIX = "ATDCO-";
-    public static final int PREFIX_LENGTH = 6;
+
+    public static final String CHECK_IN_CLASS_PREFIX = "ATD01CI-";
+    public static final String CHECK_OUT_CLASS_PREFIX = "ATD01CO-";
+
+    public static final int PREFIX_LENGTH = 8;
 
     /**
      * GLOBAL CONSTANT*

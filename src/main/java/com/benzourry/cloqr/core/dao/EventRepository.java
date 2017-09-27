@@ -20,6 +20,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     public Page<Event> findByOrganizeBy(@Param("organizeBy") String organizeBy, Pageable pageable);
 
+    @Query("select e from Event e where e.compClassId = :compClassId")
+    public Event findByCompClassId(@Param("compClassId") String compClassId);
+
 //    @Query("SELECT e FROM Event e WHERE e.organizedBy = :staffNo")
 //    public List<Event> findByStaffNo(@Param("staffNo") String staffNo);
 

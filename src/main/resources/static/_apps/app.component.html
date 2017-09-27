@@ -1,0 +1,48 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+
+
+            <div class="brand">
+                <img height="100%" src="_assets/images/unimas-identity-sign-with-logo.png" />
+                <div class="system-menu pull-right">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-default" href="admin/start"><i class="fa fa-home"></i></a>
+                        <button class="btn btn-default collapsed hidden visible-xs" ng-init="navCollapsed = true"
+                                ng-click="navCollapsed=!navCollapsed">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="btn-group" uib-dropdown>
+                            <button id="dropdownProfile" class="btn btn-default" uib-dropdown-toggle>
+                                <i class="fa fa-ellipsis-v"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu aria-labelledby="dropdownProfile">
+                                <li><a ng-href="http://expert.unimas.my/profile/{{$ctrl.user.universityId}}"
+                                       target="_blank"><i class="fa fa-user"></i> My Profile</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a ng-click="$ctrl.logout()" href>Logout ({{$ctrl.user.username}})</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<span sec:authentication="principal.authorities"></span>  sec:authorize="hasAuthority('OAUTH_GRP')" -->
+        <div id="navbar" class="collapse navbar-collapse" uib-collapse="navCollapsed">
+            <ul class="nav navbar-nav navbar-right" active-link="true" >
+                <li><a  ng-href="#!/profile">Home</a></li>
+                <li><a ng-href="#!/session/add">Add Session</a></li>
+                <li><a ng-href="#!/session/list">Session List</a></li>
+                <li><a ng-href="logout">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+<div class="container fix-gutter" ng-view="true" ></div>

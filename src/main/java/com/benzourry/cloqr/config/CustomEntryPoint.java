@@ -23,12 +23,12 @@ public class CustomEntryPoint extends LoginUrlAuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
             throws IOException, ServletException {
-        System.out.println("X-REQUESTED-WITH:"+request.getHeader(X_REQUESTED_WITH));
+//        System.out.println("X-REQUESTED-WITH:"+request.getHeader(X_REQUESTED_WITH));
         if (XML_HTTP_REQUEST.equals(request.getHeader(X_REQUESTED_WITH))) {
-            System.out.println("UNAUTHORIZE IS AJAX");
+//            System.out.println("UNAUTHORIZE IS AJAX");
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         } else {
-            System.out.println("UNAUTHORIZE IS NOT AJAX");
+//            System.out.println("UNAUTHORIZE IS NOT AJAX");
             super.commence(request, response, exception);
         }
     }

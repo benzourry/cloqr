@@ -1,0 +1,58 @@
+<style>
+    .button-xsmall {
+        font-size: 70%;
+    }
+
+</style>
+
+<h1>Event List</h1>
+<div>
+    <p class="alert" ng-if="$ctrl.alertMessage">{{$ctrl.alertMessage}}</p>
+    <table class="pure-table pure-table-horizontal fluid pure-table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th width="10%">Check In</th>
+                <th width="10%">Check Out</th>
+                <th width="25%">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="session in $ctrl.sessionList">
+            <td><a ng-href="#!/session/{{session.id}}">{{session.name}}</a></td>
+            <td><a class="pure-button button-xsmall" ng-href="api/event/{{session.id}}/checkin/key" target="_blank"><i class="fa fa-qrcode"></i> Check In</a></td>
+            <td><a class="pure-button button-xsmall" ng-href="api/event/{{session.id}}/checkout/key" target="_blank"><i class="fa fa-qrcode"></i> Check Out</a></td>
+            <td><a class="pure-button button-xsmall" ng-click="deleteSession(session.id)">Delete</a><a class="pure-button button-xsmall" ng-href="#!/session/edit/{{session.id}}">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<!--<script>-->
+    <!--Attend.registerCtrl("SessionList", SessionList);-->
+    <!--SessionList.$inject = ["$scope", "$http"];-->
+    <!--function SessionList($scope, $http) {-->
+        <!--$http.get("api/event/list").success(-->
+                <!--function (res) {-->
+                    <!--$scope.sessionList = res.content;-->
+                <!--}-->
+        <!--);-->
+
+        <!--$scope.deleteSession = function(id){-->
+            <!--if (confirm("Are you sure you want to delete?")) {-->
+
+                <!--$http.delete("api/event/" + id).success(-->
+                    <!--function (res) {-->
+                        <!--$scope.$ctrl.alertMessage = "Session successfully removed";-->
+                        <!--$http.get("api/event/list").success(-->
+                                <!--function (res) {-->
+                                    <!--$scope.sessionList = res.content;-->
+                                <!--}-->
+                        <!--);-->
+                    <!--}-->
+                <!--);-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->

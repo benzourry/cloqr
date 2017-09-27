@@ -1,0 +1,120 @@
+/* 
+    Document   : iris-table
+    Created on : Jun 5, 2014, 9:28:51 PM
+    Author     : benzourry
+    Description:
+        Standard fat-rows table to be used across modules
+*/
+
+/* 
+   Standard fat-rows table to be used across modules
+*/
+
+.table > thead > tr > th, .table-bordered > thead > tr > td {
+    background: #fff;
+    text-transform:uppercase;
+    font-size: 12px;
+    color: #272626;
+    white-space: nowrap;
+}
+.table td.nowrap{
+    white-space: nowrap;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border:none;
+    border-bottom: solid 1px #ddd;
+}
+.table {
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+.table .caption{
+    font-size: 120%;
+    text-decoration: none;
+    /*display: block;*/
+}
+.table th a{
+    cursor: pointer;
+    text-decoration: none;
+}
+.table .meta{
+    font-size: 90%;
+    color: #666;
+    margin-top: 10px;
+}
+.table .sub{
+    font-size: 100%;
+    margin-top: 10px;
+}
+
+.table td{
+    border: none;
+}
+
+.table{
+    margin-bottom: 10px;
+}
+.btn-toolbar>.input-group, .btn-toolbar>.btn-group{
+    margin: 10px 5px;
+}
+
+.table.archive > tbody > tr > td *{
+   // font-style: italic;
+    color: #555;
+}
+.full{
+    margin: 0 -10px;
+}
+.full .table{
+    max-width: none;
+   /* width: auto;*/
+   /* margin-left: -10px;
+    margin-right: -10px;*/
+    border-left: none;
+    border-right: none;
+}
+.table .red td {background-color: #fdd !important;}
+.table .red .sub {font-weight: bold; color: #d00}
+.pbtxt {color: #000; white-space: nowrap; margin-left: 5px;}
+.table th.shrink{
+    white-space:nowrap
+}
+
+/* For checker-type table*/
+.checker th.rotate {
+    /* Something you can count on */
+    height: 120px;
+    white-space: nowrap;
+}
+
+.checker th.rotate > div {
+    transform: /* 25Magic Numbers 51*/ translate(0px, 0px) /* 45 is really 360 - 45 */ rotate(315deg);
+    width: 20px;
+}
+
+.checker th.rotate > div > span {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 5px;
+}
+
+/*table.checker > tbody > tr > td, .table-bordered > tfoot > tr > td {*/
+    /*border-width: 1px;*/
+    /*border-style: solid;*/
+    /*border-color: #ccc;*/
+/*}*/
+
+table.checker tbody tr td i {
+    cursor: pointer;
+}
+
+table.checker tbody tr td i.glyphicon-remove:before {
+    color: #C00005;
+}
+
+table.checker tbody tr td i.glyphicon-ok:before {
+    color: #007600;
+}
+
+table.checker tbody tr td.hot {
+    background-color: rgba(255, 132, 151, 0.20);
+}

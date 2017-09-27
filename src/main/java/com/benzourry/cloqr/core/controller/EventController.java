@@ -103,6 +103,24 @@ public class EventController {
                 .body(getDataFromBufferedImage(bi));
     }
 
+    @RequestMapping(value = "class/{compId}/checkin/key", produces = "images/jpg")
+    @ResponseBody
+    public ResponseEntity<byte[]> generateCheckInKey(@PathVariable("compId") String compId) throws IOException {
+        BufferedImage bi = eventService.getClassCheckInToken(compId);
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(getDataFromBufferedImage(bi));
+    }
+
+    @RequestMapping(value = "class/{compId}/checkout/key", produces = "images/jpg")
+    @ResponseBody
+    public ResponseEntity<byte[]> generateCheckOutKey(@PathVariable("compId") String compId) throws IOException {
+        BufferedImage bi = eventService.getClassCheckOutToken(compId);
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(getDataFromBufferedImage(bi));
+    }
+
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Event getEvent(@PathVariable("id") Long id) {
         return eventService.findById(id);

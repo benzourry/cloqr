@@ -1,5 +1,8 @@
 package com.benzourry.cloqr.core.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,15 +12,14 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="EVENT_TYPE")
+@Setter
+@Getter
 public class EventType implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "logEntrySeq")
-    @SequenceGenerator(name = "logEntrySeq", sequenceName = "LOG_ENTRY_SEQ", allocationSize = 1)
-    @Column(nullable = false, precision = 0, scale = -127)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "CODE", length= 25)
@@ -29,39 +31,4 @@ public class EventType implements Serializable{
     @Column(name = "DESCRIPTION", length=255)
     private String description;
 
-    public EventType(){
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

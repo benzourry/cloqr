@@ -124,12 +124,12 @@ public class EventService {
 
     public BufferedImage getCheckInToken(Long id) {
         Event e = eventRepository.findOne(id);
-        return getBarcode(Constant.CHECK_IN_PREFIX + e.getToken(), "CHECK-IN CODE", "");
+        return getBarcode(Constant.CHECK_IN_PREFIX + e.getToken(), "CHECK-IN CODE", e.getName());
     }
 
     public BufferedImage getCheckOutToken(Long id) {
         Event e = eventRepository.findOne(id);
-        return getBarcode(Constant.CHECK_OUT_PREFIX + e.getToken(),"CHECK-OUT CODE", "");
+        return getBarcode(Constant.CHECK_OUT_PREFIX + e.getToken(),"CHECK-OUT CODE", e.getName());
     }
 
 //    public Image getCheckInImage(Long eventId){
@@ -193,7 +193,7 @@ public class EventService {
         int y = fm.getHeight()+10;
         g2d.drawString(label,x,y);
         int x2 = Math.round((buffImg.getWidth() / 2) - (fm.stringWidth(labelBottom)/2));
-        g2d.drawString(labelBottom, x2, buffImg.getHeight() - fm.getHeight() - 10);
+        g2d.drawString(labelBottom, x2, buffImg.getHeight() - fm.getHeight() - 5);
         g2d.dispose();
 //                System.out.println("printing to " + file.getAbsolutePath());
 //            } catch (IOException e) {
@@ -221,5 +221,29 @@ public class EventService {
 //            System.out.println("log id:"+l.getId());
 //        }
         return logEntryRepository.findByEventId(eventId, pageable);
+    }
+
+    public BufferedImage getClassCheckInToken(String compId) {
+        // query class detail based on id;
+        // insert class detail into object Event
+        Event event = new Event();
+        event.setCompClassId(compId);
+        event.setName("");
+        // ....
+        eventRepository.save(event);// -> generate token
+        return getBarcode(Constant.CHECK_IN_PREFIX + event.getToken(), "CHECK-IN CODE", event.getName());
+
+
+    }
+
+    public BufferedImage getClassCheckOutToken(String compId) {
+        // query class detail based on id;
+        // insert class detail into object Event
+        Event event = eventRepository.findByCompClassId(compId);
+        event.setName("");
+        // ....
+        eventRepository.save(event);// -> generate token
+        return getBarcode(Constant.CHECK_IN_PREFIX + event.getToken(), "CHECK-IN CODE", event.getName());
+
     }
 }
