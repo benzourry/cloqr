@@ -4,7 +4,7 @@
 angular.module('app')
     .component("sessionView", {
         templateUrl: "_apps/session/session_view.html",
-        controller: SessionAdd
+        controller: SessionView
     });
 
 SessionView.$inject = ["$http", "$routeParams"];

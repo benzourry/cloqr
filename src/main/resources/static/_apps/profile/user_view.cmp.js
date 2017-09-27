@@ -3,7 +3,7 @@
  */
 angular.module('app')
     .component("userView", {
-        templateUrl: "_apps/session/session_add.html",
+        templateUrl: "_apps/profile/user_view.html",
         controller: UserView
     });
 
@@ -22,31 +22,33 @@ function UserView($http, $routeParams, userService) {
     vm.$onInit = function(){
         userService.get().then(function(user){
             vm.user = user;
+            getLogs();
+            getEventList();
         });
     }
 
     function getAccount(){
-        $http.get("api/account/" + vm.user.username + "").success(
+        $http.get("api/account/" + vm.user.username + "").then(
             function (res) {
-                $scope.data = res;
+                vm.data = res.data;
             }
         );
 
     }
 
     function getLogs(){
-        $http.get("api/account/" + vm.user.username + "/logs").success(
+        $http.get("api/account/" + vm.user.username + "/logs").then(
             function (res) {
-                $scope.logList = res.content;
+                vm.logList = res.data.content;
             }
         );
 
     }
 
     function getEventList(){
-        $http.get("api/event/list").success(
+        $http.get("api/event/list").then(
             function (res) {
-                $scope.sessionList = res.content;
+                vm.sessionList = res.data.content;
             }
         );
 

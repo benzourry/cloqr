@@ -109,6 +109,7 @@ public class SecurityConfig {
                     .antMatchers("/api/public/**").permitAll()
                     .antMatchers("/public/**").permitAll()
                     .antMatchers("/api/v*/public/**").permitAll()
+                    .antMatchers("/api/event/**/**/key").permitAll()
                     .antMatchers("/api/lookup/**/list").permitAll()
                     .antMatchers("/api/v*/lookup/**/list").permitAll()
                     .anyRequest().authenticated() //will try to authenticate against OAuth session, not application session!
@@ -139,8 +140,10 @@ public class SecurityConfig {
         public void configure(HttpSecurity http) throws Exception {
             http
                 .requestMatchers().antMatchers("/api/**")
+
                 .and()
                 .authorizeRequests()
+                    .antMatchers("/api/event/**/**/key").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         }

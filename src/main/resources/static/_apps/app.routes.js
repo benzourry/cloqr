@@ -10,11 +10,12 @@ config.$inject=['$routeProvider'];
 function config($routeProvider) {
     $routeProvider.
     /* Profile */
-    when('/', {templateUrl: '_apps/profile/view.html'}).
+    when('/', {template: '<div oc-lazy-load="_apps/profile/user_view.cmp.js"><user-view></user-view></div>'}).
+    when('/profile', {template: '<div oc-lazy-load="_apps/profile/user_view.cmp.js"><user-view></user-view></div>'}).
     //when('/profile', {templateUrl: '_apps/profile/view.html'}).
     when('/session/add', {template: '<div oc-lazy-load="_apps/session/session_add.cmp.js"><session-add></session-add></div>'}).
     when('/session/list', {template: '<div oc-lazy-load="_apps/session/session_list.cmp.js"><session-list></session-list></div>'}).
-    when('/session/:id', {template: '<div oc-lazy-load="_apps/session/session_view.cmp.js"><session-detail></session-detail></div>'}).
+    when('/session/:id', {template: '<div oc-lazy-load="_apps/session/session_view.cmp.js"><session-view></session-view></div>'}).
     when('/session/edit/:id', {template: '<div oc-lazy-load="_apps/session/session_edit.cmp.js"><session-detail></session-detail></div>'}).
     when('/user/:username', {templateUrl: '_apps/user_view.html'}).
     when('/profile', {template: '<div oc-lazy-load="_apps/profile/user_view.cmp.js"><user-view></user-view></div>'});
